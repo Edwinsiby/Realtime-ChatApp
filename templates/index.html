@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Chat</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>WebSocket Chat</h1>
+        </div>
+        <form action="http://localhost:8080/user-login" method="POST">
+            <div class="username-input">
+                <input type="text" name="userName" placeholder="Enter your username" required>
+                <button type="submit">Login</button>
+                <div>
+                    <h6>{{.}}</h6>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
+

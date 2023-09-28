@@ -25,17 +25,25 @@ var (
 
 func main() {
 	router := gin.New()
+	router.LoadHTMLGlob("templates/*.html")
+	router.Static("/static", "./static")
+	router.GET("/", Index)
 	router.POST("user-login", Login)
 	router.GET("ws/chat", Chat)
 	router.Run()
 }
 
+func Index(c *gin.Context) {
+	c.HTML(200, "index.html", nil)
+}
+
 func Login(c *gin.Context) {
 	userName = c.Request.FormValue("userName")
 	if _, ok := connectedPublicClients[userName]; ok {
-		c.JSON(http.StatusBadRequest, "user already exsist")
+		c.HTML(http.StatusBadRequest, "index.html", "user already exsist")
 	}
 	c.Set("userName", userName)
+	c.HTML(200, "chat.html", userName)
 }
 
 func Chat(c *gin.Context) {
